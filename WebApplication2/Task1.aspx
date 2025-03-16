@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Task1.aspx.cs" Inherits="WebApplication2.Task1" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Task Details</title>
@@ -12,24 +11,27 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f7fc;
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient Background */
             margin-top: 20px;
+            color: #333;
         }
 
         .container {
             margin-top: 30px;
             background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .form-control, .btn {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .grid-container {
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .form-group label {
@@ -54,6 +56,7 @@
         .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
+            border-radius: 5px;
         }
 
         .btn-primary:hover {
@@ -64,6 +67,7 @@
         .btn-secondary {
             background-color: #6c757d;
             border-color: #6c757d;
+            border-radius: 5px;
         }
 
         .btn-secondary:hover {
@@ -92,6 +96,16 @@
         .form-group {
             margin-bottom: 20px;
         }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .container h1 {
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
@@ -112,7 +126,7 @@
             </div>
 
             <!-- SqlDataSource2 for GridView -->
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT 
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" ProviderName="<%$ ConnectionStrings:ConnectionString2.ProviderName %>" SelectCommand="SELECT 
     u.USERID,
     u.USERNAME,
     u.USEREMAIL,
@@ -125,8 +139,9 @@
 FROM &quot;User&quot; u
 JOIN PROJECT_USER pu ON u.USERID = pu.USERID
 JOIN PROJECT p ON pu.PROJECTID = p.PROJECTID
-WHERE u.USERID = :UserID
-ORDER BY u.USERID, p.PROJECTID">
+WHERE pu.USERID = :UserID
+ORDER BY u.USERID, p.PROJECTID
+">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" Name="UserID" PropertyName="SelectedValue" />
                 </SelectParameters>
@@ -134,8 +149,9 @@ ORDER BY u.USERID, p.PROJECTID">
 
             <!-- GridView for displaying project details -->
             <div class="grid-container">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="USERID,PROJECTID" DataSourceID="SqlDataSource2" CssClass="table table-striped table-bordered">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="USERID,PROJECTID" DataSourceID="SqlDataSource2" CssClass="table table-striped table-bordered" AllowPaging="True" AllowSorting="True">
                     <Columns>
+                        <asp:CommandField ShowSelectButton="True" />
                         <asp:BoundField DataField="USERID" HeaderText="USERID" ReadOnly="True" SortExpression="USERID" />
                         <asp:BoundField DataField="USERNAME" HeaderText="USERNAME" SortExpression="USERNAME" />
                         <asp:BoundField DataField="USEREMAIL" HeaderText="USEREMAIL" SortExpression="USEREMAIL" />

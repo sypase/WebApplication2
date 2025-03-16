@@ -123,7 +123,7 @@
     <div class="container">
         <!-- Milestone 3 in the center -->
         <div class="text-center">
-            <h2>Milestone 3</h2>
+            <h2>Project Manager</h2>
             <p class="lead">Project Management Dashboard</p>
         </div>
 
@@ -169,10 +169,6 @@
 
     </div>
 
-    <!-- Footer Section -->
-    <div class="footer">
-        <p>&copy; 2025 Your Company | All Rights Reserved</p>
-    </div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

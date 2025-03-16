@@ -9,98 +9,99 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ6V7e3bFAMp2y1pXw6E8H8g13cTOHmz6o72GtbfWFOwW0lPaRLugK1nC6L6" crossorigin="anonymous">
     
     <!-- Custom CSS -->
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7fc;
-            margin-top: 20px;
-        }
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+        margin-top: 20px;
+    }
 
-        .container {
-            margin-top: 30px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    .container {
+        margin-top: 30px;
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .form-control, .btn {
-            margin-bottom: 15px;
-        }
+    .form-control, .btn {
+        margin-bottom: 15px;
+    }
 
-        .form-group label {
-            font-weight: bold;
-            color: #495057;
-        }
+    .form-group label {
+        font-weight: bold;
+        color: #495057;
+    }
 
-        .grid-container {
-            margin-top: 30px;
-        }
+    .grid-container {
+        margin-top: 30px;
+    }
 
-        .table-striped th, .table-striped td {
-            text-align: center;
-        }
+    .table-striped th, .table-striped td {
+        text-align: center;
+    }
 
-        .table th, .table td {
-            vertical-align: middle;
-        }
+    .table th, .table td {
+        vertical-align: middle;
+    }
 
-        /* Add hover effect to GridView rows */
-        .table-striped tbody tr:hover {
-            background-color: #f1f1f1;
-        }
+    /* Add hover effect to GridView rows */
+    .table-striped tbody tr:hover {
+        background-color: #f1f1f1;
+    }
 
-        /* Button Styles */
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
+    /* Button Styles */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
-        }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
 
-        .btn-secondary {
-            background-color: #6c757d;
-            border-color: #6c757d;
-        }
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
 
-        .btn-secondary:hover {
-            background-color: #5a6268;
-            border-color: #4e555b;
-        }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #4e555b;
+    }
 
-        /* Table header styling */
-        .table th {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
-        }
+    /* Table header styling */
+    .table th {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+    }
 
-        /* Adjust table borders */
-        .table-bordered th, .table-bordered td {
-            border: 1px solid #dee2e6;
-        }
+    /* Adjust table borders */
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #dee2e6;
+    }
 
-        /* Customize the dropdown and select controls */
-        .form-control {
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
+    /* Customize the dropdown and select controls */
+    .form-control {
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-        /* Page title styling */
-        .page-title {
-            font-size: 28px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 30px;
-        }
-    </style>
+    /* Page title styling */
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 30px;
+    }
+</style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -120,22 +121,24 @@
 
             <!-- SqlDataSource1 for Top Users by Task Count -->
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM (
-                SELECT 
-                    u.USERID, 
-                    u.USERNAME,
-                    u.USEREMAIL,
-                    u.USERCONTACT,
-                    COUNT(t.TASKID) AS TASK_COUNT
-                FROM &quot;User&quot; u
-                JOIN PROJECT_USER pu ON u.USERID = pu.USERID 
-                JOIN PROJECT p ON pu.PROJECTID = p.PROJECTID
-                JOIN USER_TASK_ROLE utr ON u.USERID = utr.USER_ID 
-                JOIN TASK t ON utr.TASK_ID = t.TASKID
-                WHERE p.PROJECTID = :ProjectID
-                GROUP BY u.USERID, u.USERNAME, u.USEREMAIL, u.USERCONTACT 
-                ORDER BY TASK_COUNT DESC
-            )
-            WHERE ROWNUM &lt;= 3">
+    SELECT 
+        u.USERID, 
+        u.USERNAME,
+        u.USEREMAIL,
+        u.USERCONTACT,
+        COUNT(t.TASKID) AS TASK_COUNT
+    FROM &quot;User&quot; u
+    JOIN PROJECT_USER pu ON u.USERID = pu.USERID 
+    JOIN PROJECT p ON pu.PROJECTID = p.PROJECTID
+    JOIN USER_TASK_ROLE utr ON u.USERID = utr.USER_ID 
+    JOIN TASK t ON utr.TASK_ID = t.TASKID
+    WHERE p.PROJECTID = :ProjectID
+    AND p.STATUS != 'pending'
+    GROUP BY u.USERID, u.USERNAME, u.USEREMAIL, u.USERCONTACT 
+    ORDER BY TASK_COUNT DESC
+)
+WHERE ROWNUM &lt;= 3
+">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" Name="ProjectID" PropertyName="SelectedValue" />
                 </SelectParameters>

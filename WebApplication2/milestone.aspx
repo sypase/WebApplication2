@@ -11,63 +11,121 @@
     <!-- Font Awesome Icons -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
-    <style>
-        body {
-            background-color: #f8f9fa;
-            padding-top: 20px;
-            color: #333;
-        }
-        .page-header {
-            border-bottom: 2px solid #007bff;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-        }
-        .card {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
-        }
-        .card-header {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
-        }
-        .table thead th {
-            background-color: #e9ecef;
-            border-bottom: 2px solid #dee2e6;
-        }
-        .btn-action {
-            margin-right: 5px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-control:focus {
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-        .milestone-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        .btn-primary:hover {
-            background-color: #0069d9;
-            border-color: #0062cc;
-        }
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-        .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #bd2130;
-        }
-    </style>
+  <style>
+    body {
+        background-color: #f7f8fa;
+        color: #343a40;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding-top: 30px;
+    }
+    .page-header {
+        border-bottom: 3px solid #007bff;
+        margin-bottom: 30px;
+        padding-bottom: 12px;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    .card {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        border-radius: 8px;
+    }
+    .card-header {
+        background-color: #007bff;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 15px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    .table thead th {
+        background-color: #e9ecef;
+        color: #495057;
+        font-weight: 500;
+        border-bottom: 2px solid #dee2e6;
+        text-align: center;
+    }
+    .table tbody td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .btn-action {
+        margin-right: 5px;
+    }
+    .form-group {
+        margin-bottom: 18px;
+    }
+    .form-control:focus {
+        border-color: #66afe9;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+    }
+    .milestone-form {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 10px 15px;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        padding: 10px 15px;
+    }
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+        padding: 10px 15px;
+    }
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        padding: 10px 15px;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+    .form-control {
+        padding: 10px;
+        font-size: 1rem;
+    }
+    .form-control-plaintext {
+        font-size: 1rem;
+        color: #495057;
+    }
+    .offset-sm-3 {
+        margin-left: 25%;
+    }
+    .alert-info {
+        font-size: 1.1rem;
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+    }
+    .fa {
+        margin-right: 8px;
+    }
+</style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -128,7 +186,7 @@
                 <div class="col-md-8 offset-md-2">
                     <asp:FormView ID="FormView1" runat="server" DataKeyNames="MILESTONEID" 
                         DataSourceID="SqlDataSource1" CssClass="milestone-form"
-                        Width="100%">
+                        Width="100%" AllowPaging="True">
                         <EditItemTemplate>
                             <h3 class="mb-4"><i class="fa fa-edit"></i> Edit Milestone</h3>
                             <div class="form-group row">
